@@ -228,6 +228,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "186dce98367766de751c42c4f03970fc60fc012296e706ccbb9d5df9b6c1e271"
 
 [[package]]
+name = "common_macros"
+version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f3f6d59c71e7dc3af60f0af9db32364d96a16e9310f3f5db2b55ed642162dd35"
+
+[[package]]
 name = "config"
 version = "0.13.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -249,6 +255,16 @@ checksum = "a06aeb73f470f66dcdbf7223caeebb85984942f22f1adb2a088cf9668146bbbc"
 dependencies = [
  "cfg-if",
  "wasm-bindgen",
+]
+
+[[package]]
+name = "console_log"
+version = "1.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "be8aed40e4edbf4d3b4431ab260b63fdc40f5780a4766824329ea0f1eefe3c0f"
+dependencies = [
+ "log",
+ "web-sys",
 ]
 
 [[package]]
@@ -472,7 +488,28 @@ dependencies = [
  "futures-channel",
  "futures-core",
  "futures-sink",
- "gloo-utils",
+ "gloo-utils 0.1.7",
+ "js-sys",
+ "pin-project",
+ "serde",
+ "serde_json",
+ "thiserror",
+ "wasm-bindgen",
+ "wasm-bindgen-futures",
+ "web-sys",
+]
+
+[[package]]
+name = "gloo-net"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8ac9e8288ae2c632fa9f8657ac70bfe38a1530f345282d7ba66a1f70b72b7dc4"
+dependencies = [
+ "futures-channel",
+ "futures-core",
+ "futures-sink",
+ "gloo-utils 0.2.0",
+ "http",
  "js-sys",
  "pin-project",
  "serde",
@@ -488,6 +525,19 @@ name = "gloo-utils"
 version = "0.1.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "037fcb07216cb3a30f7292bd0176b050b7b9a052ba830ef7d5d65f6dc64ba58e"
+dependencies = [
+ "js-sys",
+ "serde",
+ "serde_json",
+ "wasm-bindgen",
+ "web-sys",
+]
+
+[[package]]
+name = "gloo-utils"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0b5555354113b18c547c1d3a98fbf7fb32a9ff4f6fa112ce823a21641a0ba3aa"
 dependencies = [
  "js-sys",
  "serde",
@@ -795,6 +845,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "leptos_meta"
+version = "0.5.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b64d2b4bd0ab25a4897179ee603f2fa8178da6c9f97ef3efd4fa46580fd7efc1"
+dependencies = [
+ "cfg-if",
+ "indexmap 2.1.0",
+ "leptos",
+ "tracing",
+ "wasm-bindgen",
+ "web-sys",
+]
+
+[[package]]
 name = "leptos_reactive"
 version = "0.5.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -814,6 +878,32 @@ dependencies = [
  "serde-wasm-bindgen",
  "serde_json",
  "slotmap",
+ "thiserror",
+ "tracing",
+ "wasm-bindgen",
+ "wasm-bindgen-futures",
+ "web-sys",
+]
+
+[[package]]
+name = "leptos_router"
+version = "0.5.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d5ca4422fdfba8af03d347d346f9364a4393ad36e227a018567192395285cf65"
+dependencies = [
+ "cfg-if",
+ "common_macros",
+ "gloo-net 0.2.6",
+ "itertools 0.11.0",
+ "js-sys",
+ "lazy_static",
+ "leptos",
+ "linear-map",
+ "once_cell",
+ "percent-encoding",
+ "serde",
+ "serde_json",
+ "serde_qs",
  "thiserror",
  "tracing",
  "wasm-bindgen",
@@ -842,6 +932,16 @@ name = "libc"
 version = "0.2.150"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "89d92a4743f9a61002fae18374ed11e7973f530cb3a3255fb354818118b2203c"
+
+[[package]]
+name = "linear-map"
+version = "1.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "bfae20f6b19ad527b550c223fddc3077a547fc70cda94b9b566575423fd303ee"
+dependencies = [
+ "serde",
+ "serde_test",
+]
 
 [[package]]
 name = "lock_api"
@@ -887,7 +987,15 @@ name = "me"
 version = "0.1.0"
 dependencies = [
  "console_error_panic_hook",
+ "console_log",
+ "gloo-net 0.4.0",
+ "http",
+ "lazy_static",
  "leptos",
+ "leptos_meta",
+ "leptos_router",
+ "log",
+ "wasm-bindgen",
 ]
 
 [[package]]
@@ -1379,6 +1487,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "serde_test"
+version = "1.0.176"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5a2f49ace1498612d14f7e0b8245519584db8299541dfe31a06374a828d620ab"
+dependencies = [
+ "serde",
+]
+
+[[package]]
 name = "serde_urlencoded"
 version = "0.7.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1398,7 +1515,7 @@ checksum = "0186f969a1f9572af27159b8273252abf9a6a38934130fe6f3ae0e439d48cf14"
 dependencies = [
  "ciborium",
  "const_format",
- "gloo-net",
+ "gloo-net 0.2.6",
  "js-sys",
  "lazy_static",
  "once_cell",
